@@ -1,0 +1,2 @@
+class EmailVarificationsController < ApplicationController
+end
