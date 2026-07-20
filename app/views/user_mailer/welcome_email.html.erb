@@ -1,1 +1,6 @@
 <h2> welcome <%= @user.firstname %> </h2>
+<p> thanks for registration in our app </p>
+<p> click below link for verify your email <p>
+<%= link_to "verify acount",email_verify_url(token: @user.generate_token) %>
+
+
