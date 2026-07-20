@@ -1,8 +1,9 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :buses
     validates :firstname, presence: true
     validates :lastname, presence: true
-    validates :email, presence: true,uniqueness: true
+    validates :email, presence: true
     validates :gender,presence: true
     validates :contact, presence: true, format: { with: /\A\d{10}\z/, 
                      message: "must be exactly 10 digits and contain only numbers" 

@@ -7,8 +7,4 @@ class UserMailer < ApplicationMailer
             subject: "welcome to app"
         )
     end
-    
-    
-    
-
 end

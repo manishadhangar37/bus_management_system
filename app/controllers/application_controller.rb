@@ -1,7 +1,33 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+ before_action :check_authenticate_token
+ 
+ private
+ def check_authenticate_token
+  return if controller_name == "users"
+  return if controller_name == "sessions"
+  
+   token = cookies[:jwt]
+   
+    if token.nil?
+      redirect_to login_path
+      return
+    end
+    
+    begin
+      decoded = JWT.decode(
+      token,
+      Rails.application.secret_key_base,
+      true,
+      algorithm:"HS256"
+      )
+      current_user_id=(decoded[0]["user_id"])
+      cookies[:user_id] = {
+                    value: current_user_id}
+                  rescue
+                    cookies.delete(:jwt)
+                    redirect_to login_path
+    
+    end
+  end
 
-  # Changes to the importmap will invalidate the etag for HTML responses
-  stale_when_importmap_changes
 end
