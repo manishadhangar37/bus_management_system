@@ -1,25 +1,25 @@
 class Bus < ApplicationRecord
   belongs_to :user
   has_many_attached :images
-  validates :bus_name,presence:true
-  validates :bus_number,presence:true,format: {with:/\A MP-\d{2}-[A-Z]-\d{4}}\z/}
-  validates :total_seat,numericality: {greater_than_or_equal_to:45,less_than_or_equal_to:55}
-  validates :source_and_destination_diff
-  validates :arrival_time_must_greater_to_departure_time
 
+
+  validates :bus_name, presence: true
+  validates :bus_number, presence: true, format: { with:  /\A[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}\z/, message: "bus number must in these format MP-09-FA-1234" }
+  validates :total_seat, numericality: { greater_than_or_equal_to: 45, less_than_or_equal_to: 55,  message: "must be between 45 and 55" }
+  validate :source_and_destination_diff
+  validate :arrival_time_must_greater_to_departure_time
+  validates :images, limit: { min: 5, message: "must contain  5 image files" }
+
+  private
   def source_and_destination_diff
     if source == destination
-      errrs.add(destination: "source and destination must be different")
+      errors.add(:destination, "source and destination must be different")
     end
   end
 
   def arrival_time_must_greater_to_departure_time
-    if arrival_at < departure_at 
-      errors.add(arrival: "arrival must greater than departure")
+    if arrival_at < departure_at
+      errors.add(:arrival, "arrival must greater than departure")
     end
   end
-
-
- 
-
 end

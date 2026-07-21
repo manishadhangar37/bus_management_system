@@ -1,49 +1,112 @@
-<% @user.errors.full_messages.each do |message| %>
-    <p style="color:red"><%= message %> </p>
-    <% end %>
+
 
 <body style="background-color: #C0C0C0";>
 
-<div style="margin: 0 auto; width:350px;background-color:#898989; padding:10px">
 
-<%= form_with model:@user do |f| %>
-        <h3 style="color:green"> REGISTER </h3>
-    <%= f.label:firstname %>:
-    <%= f.text_field :firstname %>
-     <br/> <br/>
-    <%= f.label:lastname %>:
-    <%= f.text_field :lastname %>
-    <br/> <br/>
+  <div class="container d-flex align-items-center min-vh-100">
+  <div class="row w-100">
+  <div class="col-md-6 col-lg-4 mx-auto p-4 bg-light-subtle border rounded shadow-sm">
+  <%= form_with model:@user do |f| %>
+        <h3 class="mb-4 text-center text-success"> REGISTER </h3>
+         <div class="mb-3">
+           <%= f.label:firstname, class:"form-label"  %>
+           <%= f.text_field :firstname, class: "form-control" %>
+           <% if @user.errors[:firstname].any? %>
+           <div class="field-error text-danger">
+           <%= @user.errors.full_messages_for(:firstname).to_sentence %>
+           </div>
+           <% end %>
+         </div>
+       <div class="mb-3">
+        <%= f.label:lastname, class:"form-label" %>
+        <%= f.text_field :lastname, class:"form-control" %>
+         <% if @user.errors[:lastname].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:lastname).to_sentence %>
+         </div>
+        <% end %>
+       </div>
+       
     
-    <%= f.label :contect %>:
-    <%= f.telephone_field :contact %>
-    <br/> <br/>
-    <%= f.label:email %>:
-    <%= f.email_field :email%>
-    <br/> <br/>
-     <%= f.label :password %>:
-     <%= f.password_field :password %><br /> <br/>
-     <%= f.label :password_confirmation %>:
-     <%= f.password_field :password_confirmation %>
-     <br/>
+    <div class="mb-3">
+     <%= f.label :contect,class:"form-label" %>
+     <%= f.telephone_field :contact, class:"form-control" %>
+     <% if @user.errors[:contact].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:contact).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+    <%= f.label:email %>
+    <%= f.email_field :email , class:"form-control"%>
+    <% if @user.errors[:email].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:email).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+     <%= f.label :password , class:"form-label"%>
+     <%= f.password_field :password , class:"form-control"%>
+     <% if @user.errors[:password].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:password).to_sentence %>
+         return
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+     <%= f.label :password_confirmation , class:"form-label" %>
+     <%= f.password_field :password_confirmation, class:"form-control"%>
+     <% if @user.errors[:password].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:password).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+     <div class="form-check">
     <%= f.radio_button:gender,"male" %>
     <%= f.label :gender_male, "MALE" %>
+     <% if @user.errors[:gender].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:gender).to_sentence %>
+         </div>
+        <% end %>
+
     
     <%= f.radio_button:gender,"female" %>
     <%= f.label :gender_female, "FEMALE" %>
-    <br/> <br/>
+     <% if @user.errors[:gender].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:gender).to_sentence %>
+         </div>
+        <% end %>
+    <%= f.radio_button:gender,"other" %>
+    <%= f.label :gender_female, "OTHER" %>
+     <% if @user.errors[:gender].any? %>
+           <div class="field-error text-danger">
+         <%= @user.errors.full_messages_for(:gender).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
     <%= f.select :role, [["Admin","admin"],["User","user"]] %>
-   <br/>
-    <br/>
-    <br/> 
+    </div> 
     
-   <button style="background-color:green" > <%= f.submit %> </button>
+    <%= f.submit "Sign Up", class: "btn btn-success w-100 mt-2" %> 
    
     <% end %>
-    <div/>
+    
+
+    
+    </div>
+  </div>
+</div>
+
+  
 
 </body>
-
 
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_20_121554) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_21_110058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_20_121554) do
     t.string "bus_number"
     t.datetime "created_at", null: false
     t.datetime "departure_at"
+    t.date "departure_date"
     t.string "destination"
     t.string "source"
     t.integer "thumbnail_image_id"

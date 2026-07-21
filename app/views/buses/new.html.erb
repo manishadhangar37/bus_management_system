@@ -1,0 +1,101 @@
+
+
+<body style="background-color: #C0C0C0";>
+
+
+  <div class="container d-flex align-items-center min-vh-100">
+  <div class="row w-100">
+  <div class="col-md-6 col-lg-4 mx-auto p-4 bg-light-subtle border rounded shadow-sm">
+  <%= form_with model:[@user,@bus] do |f| %>
+        <h3 class="mb-4 text-center text-success"> New Bus </h3>
+         <div class="mb-3">
+           <%= f.label:bus_name, class:"form-label"  %>
+           <%= f.text_field :bus_name, class: "form-control" %>
+           <% if @bus.errors[:bus_name].any? %>
+           <div class="field-error text-danger">
+           <%= @bus.errors.full_messages_for(:bus_name).to_sentence %>
+           </div>
+           <% end %>
+         </div>
+       <div class="mb-3">
+        <%= f.label:bus_number, class:"form-label" %>
+        <%= f.text_field :bus_number, class:"form-control" %>
+         <% if @bus.errors[:bus_number].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:bus_number).to_sentence %>
+         </div>
+        <% end %>
+       </div>
+       
+    
+    <div class="mb-3">
+     <%= f.label :source,class:"form-label" %>
+     <%= f.text_field :source, class:"form-control" %>
+     <% if @bus.errors[:source].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:source).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+    <%= f.label:destination %>
+    <%= f.text_field :destination , class:"form-control"%>
+    <% if @bus.errors[:destination].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:destination).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+     <%= f.label :total_seat, class:"form-label"%>
+     <%= f.number_field :total_seat , class:"form-control"%>
+     <% if @bus.errors[:total_seat].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:total_seat).to_sentence %>
+         return
+         </div>
+        <% end %>
+    </div>
+    
+     
+     <div class="mb-3">
+     <%= f.label :departure_at, class:"form-label" %>
+     <%= f.time_field  :departure_at, class:"form-control"%>
+     <% if @bus.errors[:departure_at].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:departure_at).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+    <div class="mb-3">
+     <%= f.label :arrival_at, class:"form-label" %>
+     <%= f.time_field  :arrival_at, class:"form-control"%>
+     <% if @bus.errors[:arrival_at].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:arrival_at).to_sentence %>
+         </div>
+        <% end %>
+    </div>
+     <div class="field img-fluid">
+       <%= f.label :images %>
+         <%= f.file_field :images, multiple: true %>
+       </div>
+   
+        
+    <%= f.submit "Add Bus", class: "btn btn-success w-100 mt-2" %> 
+   
+    <% end %>
+    
+
+    
+    </div>
+  </div>
+</div>
+
+  
+
+</body>
+
+
+
+

@@ -1,9 +1,7 @@
-module CheakUserRole 
+module CheckUserRole
    extend ActiveSupport::Concern
     def self.check_role
-        cookies[:user_id]
-        role = user.role
+       
         
-    
     end
 end
