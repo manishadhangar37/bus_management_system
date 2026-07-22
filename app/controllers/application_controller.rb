@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
  def check_authenticate_token
    token = cookies[:jwt]
    if token.nil?
-      redirect_to login_path
+    redirect_to login_path and return
    end
    begin
     decoded = JWT.decode(token,
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(decoded[0]["user_id"])
     rescue
       cookies.delete(:jwt)
-      redirect_to login_path
+      redirect_to (login_path) and return
     end
   end
 end
