@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :buses
+    has_many :bookings
+
     validates :firstname, presence: true
     validates :lastname, presence: true
     validates :email, presence: true

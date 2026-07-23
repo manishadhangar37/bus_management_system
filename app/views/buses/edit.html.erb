@@ -77,17 +77,14 @@
         <% end %>
     </div>
     
-     <div class="field img-fluid">
-       <%= f.label :images %>
-         <%= f.file_field :images, multiple: true %>
-       </div>
+     
    <div class="container p-3 mr-4">
    <% @bus.images.each do |image| %>
    
    <%= image_tag image, height:100, width:100 %>
    <% image.blob_id%>
    
-    <%= radio_button_tag "bus[thumbnail_image_id]", image.blob.id %>
+    <%= radio_button_tag "bus[thumbnail_image_id]", image.id %>
 
    <% end %>               
    </div>

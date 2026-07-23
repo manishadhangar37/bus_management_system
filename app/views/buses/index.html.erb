@@ -1,0 +1,28 @@
+
+<table class=" table table-primary">
+
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">BusName </th>
+      <th scope="col">BusNumber </th>
+      <th scope="col">Source </th>
+      <th scope="col">Destination</th>
+     
+        <th scope="col">view bus</th>
+       
+       
+    </tr>
+  </thead>
+  <tbody>
+    <% @buses.each_with_index do |bus,index|%>
+    <tr>
+      <th scope="row"><%= index+1 %></th>
+      <td><%= bus&.bus_name %></td>
+      <td><%= bus.bus_number %></td>
+      <td><%= bus.source%></td>
+      <td><%= bus.destination %></td>
+      <td><%= link_to "view_bus", user_bus_path(@user,bus)%>
+    </tr>
+    <tr>
+        <% end %>
