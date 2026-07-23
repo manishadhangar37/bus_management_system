@@ -1,6 +1,7 @@
 class Bus < ApplicationRecord
   belongs_to :user
   has_many_attached :images
+  has_many :bookings
 
 
   validates :bus_name, presence: true
