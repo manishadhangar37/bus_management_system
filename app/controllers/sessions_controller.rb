@@ -5,7 +5,10 @@ class SessionsController < ApplicationController
     end
     def create
         user = User.find_by(email: params[:email])
-        return if user.nil?
+         if user.nil?
+           flash.now[:alert]="enter email first"
+           render :new and return
+         end
         if user&.authenticate(params[:password]) && user.email_varified
             token = JwtService.new.generate_token(user)
             if token

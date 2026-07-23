@@ -9,7 +9,7 @@ class Bus < ApplicationRecord
   validate :source_and_destination_diff
   validate :arrival_time_must_greater_to_departure_time
   validates :images, limit: { min: 5, message: "must contain  5 image files" }
-
+  after_save :set_availabel_seat
   private
   def source_and_destination_diff
     if source == destination
@@ -21,5 +21,8 @@ class Bus < ApplicationRecord
     if arrival_at < departure_at
       errors.add(:arrival, "arrival must greater than departure")
     end
+  end
+  def set_availabel_seat
+    self.available_seat = self.total_seat
   end
 end

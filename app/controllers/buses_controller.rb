@@ -8,17 +8,38 @@ class BusesController < ApplicationController
     def index
       @buses = Bus.all
     end
+    def show
+      @bus = @bus = @user.buses.find(params[:id])
+      thumb_id = @bus.thumbnail_image_id
 
-    def create
-          # return unless @current_user.admin?
-          @bus = @user.buses.new(bus_params)
-
-        if @bus.save
-            redirect_to users_path(@user), notice: "created"
-        else
-          render :new, status: :unprocessable_entity
-        end
+        @thumbnail = @bus.images.find_by(blob_id: @bus.thumbnail_image_id)
+         url_for(@thumbnail) if @thumbnail.present?
     end
+
+     def create
+          # return unless @current_user.admin?
+            @bus = @user.buses.new(bus_params)
+
+           if @bus.save
+            redirect_to edit_user_bus_path(@user, @bus)
+           else
+              render :new, status: :unprocessable_entity
+           end
+          end
+
+    def edit
+       @bus = @user.buses.find(params[:id])
+    end
+
+    def update
+       @bus = Bus.find(params[:id])
+
+       @bus.update_columns(bus_params)
+       @bus.update(thumbnail_image_id: params[:bus][:thumbnail_image_id])
+
+       redirect_to "/"
+    end
+
 
 
     private
