@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
  private
  def check_authenticate_token
    token = cookies[:jwt]
+
    if token.nil?
     redirect_to login_path and return
    end

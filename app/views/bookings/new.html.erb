@@ -4,15 +4,20 @@
   </h2>
   </div>
   <%= form_with url: bus_bookings_path(@bus), method: :post do |f| %>
-
+       <div class="mb-3 container d-flex align-items-center ">
+           <%= f.label:booking_date, class:"form-label"  %>
+           <%= f.date_field :booking_date, class: "form-control" %>
+           <% if @bus.errors[:booking_date].any? %>
+           <div class="field-error text-danger">
+           <%= @bus.errors.full_messages_for(:booking_date).to_sentence %>
+           </div>
+           <% end %>
+           </div> 
     <div class="row justify-content-center">
       <% (1..@bus.total_seat).each do |seat_number| %>
         <div class="col-3 col-md-2 mb-3">
           
-          <input type="checkbox"class="btn-check"
-                 name="seat_number"
-                 id="seat_<%= seat_number %>"
-                 value="<%= seat_number %>">
+          <input type="checkbox"class="btn-check"name="seat_number[]" id="seat_<%= seat_number%>"value="<%= seat_number %>">
          <label class="btn btn-outline-primary w-50 py-3"
                  for="seat_<%= seat_number %>">
             
@@ -26,12 +31,11 @@
     <div class="text-center mt-4">
       
    
-      <%= f.submit "Book Selected Seat", class: "btn btn-success px-5" %>
+<%= f.submit "Book Selected Seat", class: "btn btn-success px-5" %>
+
      
     </div>
 
   <% end %>
 </div>
-
-
 
