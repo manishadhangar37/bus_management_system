@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
             token = JwtService.new.generate_token(user)
             if token
                 cookies[:jwt] = {
-                    value: token
+                    value: token,
+                    expires: 2.weeks.from_now, httponly: true
                 }
-
-                redirect_to "/", notice: "login successfully"
+               redirect_to "/", notice: "login successfully"
 
             end
         else

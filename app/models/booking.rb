@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :bus
  
   
-  validates :total_ticket,  numericality: { greater_than_or_equal_to: 3 }
+  validates :total_ticket,  numericality: { less_than_or_equal_to: 3,message: "can book less then one 3 seat " }
   validate :booking_date_greater_than_today
   after_create :decrease_total_seat
   def booking_date_greater_than_today
@@ -13,7 +13,9 @@ class Booking < ApplicationRecord
    end
   end
   def decrease_total_seat
-    user.total_seat-=total_ticket
-  end
+  
+
+  bus.total_seat - self.total_ticket
+end
   
 end
