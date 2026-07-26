@@ -1,0 +1,225 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <!-- Sidebar -->
+
+    <div class="col-md-2 bg-dark text-white min-vh-100">
+
+      <h3 class="text-center py-4">
+        🚌 Bus Admin
+      </h3>
+
+      <hr>
+
+      <ul class="nav flex-column">
+
+        <li class="nav-item mb-2">
+          <%= link_to "🏠 Dashboard", admins_path,
+              class: "nav-link text-white" %>
+        </li>
+        
+
+        <li class="nav-item mb-2">
+          <%= link_to "🚌 All Buses",buses_path,
+              class: "nav-link text-white" %>
+        </li>
+
+        <li class="nav-item mb-2">
+          <%= link_to "👤 All Users",users_path,
+              class: "nav-link text-white" %>
+        </li>
+
+        <li class="nav-item mb-2">
+          <%= link_to "🎫 All Bookings",bookings_path,
+              class: "nav-link text-white" %>
+        </li>
+
+        <li class="nav-item mt-5">
+          <%= link_to "🚪 Logout", logout_path,
+              data: { turbo_method: :delete },
+              class: "btn btn-danger w-100" %>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+
+    <!-- Main Content -->
+
+    <div class="col-md-10 bg-light">
+
+      <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+
+        <h2>
+          Admin Dashboard
+        </h2>
+
+        <h5>
+          Welcome Admin
+        </h5>
+
+      </div>
+
+
+      <!-- Cards -->
+
+      <div class="row">
+
+        <div class="col-md-4">
+
+          <div class="card shadow border-0">
+
+            <div class="card-body text-center">
+
+              <h5>Total Buses</h5>
+
+              <h1 class="text-primary">
+                <%= @total_buses%>
+              </h1>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="card shadow border-0">
+
+            <div class="card-body text-center">
+
+              <h5>Total Users</h5>
+
+              <h1 class="text-success">
+                <%= @total_users %>
+              </h1>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="card shadow border-0">
+
+            <div class="card-body text-center">
+
+              <h5>Total Bookings</h5>
+                  <h1 class="text-success">
+                <%= @total_bookings %>
+              </h1>
+              
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Quick Actions -->
+
+      <div class="row mt-5">
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body text-center">
+
+              <h4>🚌</h4>
+
+              <h5>Manage Buses</h5>
+
+              <%= link_to "View Buses",
+                  buses_path,
+                  class: "btn btn-primary mt-2" %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body text-center">
+
+              <h4>👤</h4>
+
+              <h5>Manage Users</h5>
+
+              <%= link_to "View Users",
+                  users_path,
+                  class: "btn btn-success mt-2" %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body text-center">
+
+              <h4>🎫</h4>
+
+              <h5>Manage Bookings</h5>
+               <%= link_to "View bookings",
+                  bookings_path,
+                  class: "btn btn-success mt-2" %>
+
+              
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4 mt-5">
+
+          <div class="card shadow">
+
+            <div class="card-body text-center">
+
+              <h4>👤</h4>
+
+              <h5>Manage Users</h5>
+
+              <%= link_to "add Bus",
+                  new_bus_path,
+                  class: "btn btn-success mt-2" %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BusGo</title>
+
+ 
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold fs-3" href="#">
+      <i class="bi bi-bus-front-fill text-warning"></i>
+      BusGo
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse"
+    data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link active" href="/buses">Buses</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+
+      </ul>
+
+      <a href="/login" class="btn btn-outline-light ms-lg-3 me-2">
+        Login
+      </a>
+
+      <a href="/users/new" class="btn btn-warning">
+        Sign Up
+      </a>
+
+    </div>
+    
+
+  </div>
+</nav>
+
+<section class="hero">
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-8 text-center text-white hero-content">
+
+<h1 class="display-3 fw-bold">
+Travel Comfortably
+</h1>
+
+<p class="lead mt-3">
+Book Luxury AC, Sleeper & Volvo Buses Across India
+</p>
+ <!-- Book Now Button -->
+  <div class="text-center mb-4">
+    <%= link_to "Buses", buses_path, class: "btn btn-success btn-lg px-5 fw-bold" %>
+  </div>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<div class="container mt-4">
+
+  <div class="card booking-card shadow-lg border-0">
+    <div class="card-body p-4">
+
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+
+        <div class="row g-3 align-items-end">
+
+          <div class="col-md-3">
+            <%= f.label :source, "From", class: "form-label fw-semibold" %>
+            <%= f.text_field :source, class: "form-control", placeholder: "Indore" %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.label :destination, "To", class: "form-label fw-semibold" %>
+            <%= f.text_field :destination, class: "form-control", placeholder: "Bhopal" %>
+          </div>
+
+        
+
+          <div class="col-md-3 d-grid">
+            <%= f.submit "Search", class: "btn btn-warning fw-bold" %>
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<section class="why-us py-5">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <h2 class="fw-bold">Why Choose BusGo?</h2>
+
+      <p class="text-muted">
+        We make every journey comfortable, safe and affordable.
+      </p>
+
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-3 col-md-6">
+
+        <div class="feature-card text-center">
+
+          <div class="icon-box">
+            <i class="bi bi-shield-check"></i>
+          </div>
+
+          <h5 class="mt-4">Safe Journey</h5>
+
+          <p>
+            Verified buses with professional drivers for a secure trip.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+
+        <div class="feature-card text-center">
+
+          <div class="icon-box">
+            <i class="bi bi-clock-history"></i>
+          </div>
+
+          <h5 class="mt-4">On Time</h5>
+
+          <p>
+            Timely departures and arrivals so you never miss your plans.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+
+        <div class="feature-card text-center">
+
+          <div class="icon-box">
+            <i class="bi bi-wallet2"></i>
+          </div>
+
+          <h5 class="mt-4">Best Prices</h5>
+
+          <p>
+            Affordable fares with exciting offers and discounts.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+
+        <div class="feature-card text-center">
+
+          <div class="icon-box">
+            <i class="bi bi-headset"></i>
+          </div>
+
+          <h5 class="mt-4">24×7 Support</h5>
+
+          <p>
+            Friendly customer support available whenever you need help.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+</body>
+</html>

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
    token = cookies[:jwt]
 
    if token.nil?
+    flash[:notice]="login first"
     redirect_to login_path and return
    end
    begin

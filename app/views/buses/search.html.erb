@@ -1,0 +1,63 @@
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4 fw-bold text-primary">
+    Available Buses
+  </h2>
+
+  <% if @buses.any? %>
+
+    <div class="row">
+
+      <% @buses.each do |bus| %>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+
+          <div class="card shadow-lg border-0 rounded-4 h-100">
+
+            <div class="card-body">
+
+              <h4 class="card-title text-primary mb-3">
+                 <%= bus.bus_name %>
+              </h4>
+
+              <p class="mb-2">
+                <strong>Bus Number:</strong>
+                <%= bus.bus_number %>
+              </p>
+
+              <p class="mb-2">
+                <strong>From:</strong>
+                <%= bus.source %>
+              </p>
+
+              <p class="mb-2">
+                <strong>To:</strong>
+                <%= bus.destination %>
+              </p>
+
+              <div class="d-grid mt-4">
+                <%= link_to "Book Bus",
+                      new_bus_booking_path(bus),
+                      class: "btn btn-success fw-bold" %>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  <% else %>
+
+    <div class="alert alert-danger text-center">
+      <h5>No Bus Found</h5>
+      <p> No buses are available for the selected route.</p>
+    </div>
+
+  <% end %>
+
+</div>

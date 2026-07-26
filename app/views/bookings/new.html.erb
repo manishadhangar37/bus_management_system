@@ -1,24 +1,28 @@
-  <div class="container mt-4">
-   <h2 class="text-center mb-4">
+  <div class="container mt-2">
+   <h2 class="text-center fw-bold text-primary mt-3 mb-2">
     Select Seat - <%= @bus.bus_name %>
   </h2>
   </div>
+<div class="container mt-3 mb-5">
   <%= form_with url: bus_bookings_path(@bus), method: :post do |f| %>
-       <div class="mb-3 container d-flex align-items-center ">
+       <div class="row justify-content-center mb-3 mt-2">
+       <div class="col-md-6">
            <%= f.label:booking_date, class:"form-label"  %>
-           <%= f.date_field :booking_date, class: "form-control" %>
+           <%= f.date_field :booking_date,min:Date.today, class: "form-control" %>
            <% if @bus.errors[:booking_date].any? %>
            <div class="field-error text-danger">
            <%= @bus.errors.full_messages_for(:booking_date).to_sentence %>
            </div>
+
            <% end %>
+           </div>
            </div> 
-    <div class="row justify-content-center">
-      <% (1..@bus.total_seat).each do |seat_number| %>
-        <div class="col-3 col-md-2 mb-3">
           
-          <input type="checkbox"class="btn-check"name="seat_number[]" id="seat_<%= seat_number%>"value="<%= seat_number %>">
-         <label class="btn btn-outline-primary w-50 py-3"
+<div class="row justify-content-center g-2 border rounded-4 shadow-sm p-4 bg-light">
+      <% (1..@bus.total_seat).each do |seat_number| %>
+<div class="col-3 col-sm-2 col-md-1 mb-2 text-center" >         
+          <input type="checkbox"class="btn-check seat-checkbox"name="seat_number[]" id="seat_<%= seat_number%>"value="<%= seat_number %>">
+         <label class="btn btn-outline-primary w-40 h-10 py-3"
                  for="seat_<%= seat_number %>">
             
             <h4><%= seat_number %></h4>
@@ -38,4 +42,21 @@
 
   <% end %>
 </div>
+
+<script>
+let checkboxes = document.querySelectorAll(".seat-checkbox");
+checkboxes.forEach(function(checkbox){
+  checkbox.addEventListener("change", function(){
+
+    let selectedSeat = document.querySelectorAll(".seat-checkbox:checked");
+
+    if (selectedSeat.length > 3) {
+      this.checked = false;
+      alert("You can select maximum 3 seats at a time");
+    }
+
+  });
+
+});
+</script>
 

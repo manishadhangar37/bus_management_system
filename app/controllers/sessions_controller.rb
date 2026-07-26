@@ -1,32 +1,39 @@
 class SessionsController < ApplicationController
-    skip_before_action :check_authenticate_token, only: [ :new, :create ]
+    skip_before_action :check_authenticate_token
 
     def new
     end
     def create
         user = User.find_by(email: params[:email])
          if user.nil?
-           flash.now[:alert]="enter email first"
+           flash.now[:alert]="enter valid email"
            render :new and return
          end
-        if user&.authenticate(params[:password]) && user.email_varified
+        if user.authenticate(params[:password]) 
+            unless user.email_varified
+                flash.now[:alert]="email is not varified"
+            end
             token = JwtService.new.generate_token(user)
             if token
                 cookies[:jwt] = {
                     value: token,
-                    expires: 2.weeks.from_now, httponly: true
+                    expires: 24.hours.from_now, httponly: true
                 }
-               redirect_to "/", notice: "login successfully"
+               if user.admin?
+                redirect_to admins_path
+                else
+                    redirect_to root_path
+                end
 
             end
         else
            flash.now[:alert] = "invalid email/password"
             render :new, status: :unprocessable_entity
         end
+       
     end
 
     def destroy
-        session.clear
         cookies.delete(:jwt)
         redirect_to login_path
     end

@@ -9,7 +9,11 @@
       <th scope="col">Destination</th>
       <th scope="col">Arrival</th>
        <th scope="col">Departure</th>
-       <th scope="col">image</th>
+       <th scope="col">Image</th>
+      <th scope="col"> other Image</th>
+      <th scope="col"> Bus Booking</th>
+
+
 
     </tr>
   </thead>
@@ -30,8 +34,19 @@
         <%= image_tag thumbnail, width: 100  %>
         <% end %>
         </td>
+        <td> <% if @bus.images.attached? %>
+               <% @bus.images.each do |image| %>
+               <%= image_tag image, width:50,height:50 %>
+               <% end %>
+              <% else %>
+              No Image 
+             
+          <% end %>
+          </td>
+          <td> <%= link_to "Book Bus", new_bus_booking_path(bus) %> </td>
+
             
     </tr>
-    <tr>
-
+  
+</tbody>
 

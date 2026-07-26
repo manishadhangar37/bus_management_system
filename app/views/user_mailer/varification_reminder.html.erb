@@ -1,0 +1,5 @@
+<h2> Hello <%= @user.firstname %>
+<p> you have not varified your email <p>
+<p> plese click below to varify your email <p>
+<%= link_to "verify acount",email_verify_url(token: @user.generate_token) %>
+

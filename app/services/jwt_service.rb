@@ -8,6 +8,6 @@ class JwtService
         Rails.application.secret_key_base,
         "HS256")
 
-        token
+    
     end
 end

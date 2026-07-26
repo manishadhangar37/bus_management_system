@@ -1,28 +1,22 @@
 class BookingsController < ApplicationController
-before_action :set_booking
+before_action :set_bus, except: [:index]
 
-  def new
+def index 
+  @bookings = Booking.all
+end
+def show
+end
+def new
     @bus = Bus.find(params[:bus_id])
    @booking = Booking.new
   end
   def create
-    @booking = @bus.bookings.new(booking_params)
-    @booking.user = @current_user
-    current_user =@current_user
-    seats = params[:seat_number]
-    seats.each do |s|
-      if Booking.where("? = ANY(seat_number)", s).empty?
-        
-       render plain:"seat number #{s}  already booked" and return
-      end
-    end
-    @booking.total_ticket = params[:seat_number].length
-    @booking.status="confirmed"
+    @booking = CreateBookings.new(@bus,@current_user,booking_params).complete_booking
     if @booking.save
       BookingMailer.confirm_booking_message(@booking,@current_user).deliver_now
       render plain:"booked"
      end
-    end
+  end
 
   def edit
      @booking = @bus.bookings.find(params[:id])
@@ -36,9 +30,9 @@ before_action :set_booking
      params.permit(:bus_id,:booking_date,seat_number: [])
    end
 
-   def set_booking
+   def set_bus
     @bus = Bus.find(params[:bus_id])
-    end
+  end
 end
 
 

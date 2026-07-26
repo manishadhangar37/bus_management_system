@@ -13,7 +13,7 @@
            <%= f.text_field :firstname, class: "form-control" %>
            <% if @user.errors[:firstname].any? %>
            <div class="field-error text-danger">
-           <%= @user.errors.full_messages_for(:firstname).to_sentence %>
+           <%= @user.errors.full_messages_for(:firstname) %>
            </div>
            <% end %>
          </div>
@@ -22,7 +22,7 @@
         <%= f.text_field :lastname, class:"form-control" %>
          <% if @user.errors[:lastname].any? %>
            <div class="field-error text-danger">
-         <%= @user.errors.full_messages_for(:lastname).to_sentence %>
+         <%= @user.errors.full_messages_for(:lastname) %>
          </div>
         <% end %>
        </div>
@@ -70,7 +70,7 @@
     <%= f.label :gender_male, "MALE" %>
      <% if @user.errors[:gender].any? %>
            <div class="field-error text-danger">
-         <%= @user.errors.full_messages_for(:gender).to_sentence %>
+         <%= @user.errors.full_messages_for(:gender) %>
          </div>
         <% end %>
 
@@ -79,11 +79,11 @@
     <%= f.label :gender_female, "FEMALE" %>
      <% if @user.errors[:gender].any? %>
            <div class="field-error text-danger">
-         <%= @user.errors.full_messages_for(:gender).to_sentence %>
+         <%= @user.errors.full_messages_for(:gender) %>
          </div>
         <% end %>
     <%= f.radio_button:gender,"other" %>
-    <%= f.label :gender_female, "OTHER" %>
+    <%= f.label :gender_other, "OTHER" %>
      <% if @user.errors[:gender].any? %>
            <div class="field-error text-danger">
          <%= @user.errors.full_messages_for(:gender).to_sentence %>

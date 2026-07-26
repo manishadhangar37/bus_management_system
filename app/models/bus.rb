@@ -26,4 +26,5 @@ class Bus < ApplicationRecord
   def set_availabel_seat
     self.available_seat = self.total_seat
   end
+  
 end
