@@ -22,7 +22,7 @@
       <td><%= bus.bus_number %></td>
       <td><%= bus.source%></td>
       <td><%= bus.destination %></td>
-      <td><%= link_to "view_bus", user_bus_path(@user,bus)%>
+      <td><%= link_to "view_bus", bus_path(bus)%>
     </tr>
     <tr>
         <% end %>

@@ -1,0 +1,57 @@
+
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4">All Bookings</h2>
+     <% if @bookings.any? %>
+       <div class="row">
+         <% @bookings.each do |booking| %>
+
+          <div class="col-md-6 mb-4">
+
+          <div class="card shadow">
+
+            <div class="card-body">
+
+              <h5 class="card-title">
+                <%= booking.bus.bus_name %>
+              </h5>
+                <p>
+                <strong>From:</strong>
+                <%= booking.bus.source %>
+              </p>
+               <p>
+                <strong>To:</strong>
+                <%= booking.bus.destination %>
+              </p>
+            <p>
+                <strong>Booking Date:</strong>
+                <%= booking.booking_date %>
+              </p>
+              <p>
+                <strong>Total Seats:</strong>
+                <%= booking.total_ticket %>
+              </p>
+               <p>
+                <strong>Status:</strong>
+                <%= booking.status %>
+              </p>
+           </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+
+  <% else %>
+
+    <div class="alert alert-info text-center">
+      No bookings found
+    </div>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,210 @@
+body{
+    background:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Navbar */
+
+.navbar{
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(8px);
+}
+
+.nav-link{
+    color:white !important;
+    margin-left:15px;
+    font-weight:500;
+}
+
+.nav-link:hover{
+    color:#ffc107 !important;
+}
+
+
+/* Hero */
+
+.hero{
+
+    height:75vh;
+
+    background-image:url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    padding-top:180px;
+
+}
+
+.hero h1{
+
+    font-size:65px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+}
+
+
+/* Search Card */
+
+.booking-card{
+
+    margin-top:-80px;
+
+    border-radius:20px;
+
+    position:relative;
+
+    z-index:100;
+
+}
+
+
+/* Button */
+
+.btn-warning{
+
+    border-radius:10px;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.hero{
+
+height:65vh;
+
+}
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+.hero-content{
+
+padding-top:140px;
+
+}
+
+.booking-card{
+
+margin-top:-50px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero{
+
+height:60vh;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+.hero-content{
+
+padding-top:120px;
+
+}
+
+.booking-card{
+
+margin-top:-30px;
+
+}
+
+}
+/* Why Choose Us */
+
+.why-us{
+    background:#f8f9fa;
+}
+
+.feature-card{
+    background:#fff;
+    padding:35px 25px;
+    border-radius:20px;
+    transition:0.4s;
+    height:100%;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+.icon-box{
+    width:80px;
+    height:80px;
+    background:#ffc107;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+}
+
+.icon-box i{
+    font-size:35px;
+    color:#fff;
+}
+
+.feature-card h5{
+    font-weight:700;
+}
+
+.feature-card p{
+    color:#6c757d;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+@media(max-width:768px){
+
+    .feature-card{
+        margin-bottom:20px;
+    }
+
+}
