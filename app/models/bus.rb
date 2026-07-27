@@ -1,7 +1,7 @@
 class Bus < ApplicationRecord
   belongs_to :user
   has_many_attached :images
-  has_many :bookings
+  has_many :bookings,dependent: :destroy
 
 
   validates :bus_name, presence: true

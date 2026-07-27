@@ -11,15 +11,18 @@
       <% @buses.each do |bus| %>
 
         <div class="col-md-6 col-lg-4 mb-4">
-
           <div class="card shadow-lg border-0 rounded-4 h-100">
-
-            <div class="card-body">
-
-              <h4 class="card-title text-primary mb-3">
+          <div class="card-body">
+          <h4 class="card-title text-primary text-center mb-3">
                  <%= bus.bus_name %>
               </h4>
-
+              <p class="mb-2">
+                
+                <% if bus.thumbnail_image_id.present? %>
+                <% thumbnail = bus.images.find {|img| img.id == bus.thumbnail_image_id} %>
+                <%= image_tag thumbnail, width:80, class:"rounded mx-auto d-block" %>
+                <% end %>
+              </p>
               <p class="mb-2">
                 <strong>Bus Number:</strong>
                 <%= bus.bus_number %>
@@ -40,12 +43,10 @@
                       new_bus_booking_path(bus),
                       class: "btn btn-success fw-bold" %>
               </div>
-
-            </div>
-
-          </div>
-
-        </div>
+            
+              </div>
+              </div>
+              </div>
 
       <% end %>
 
