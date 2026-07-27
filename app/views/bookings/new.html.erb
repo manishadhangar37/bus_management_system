@@ -6,9 +6,10 @@
 <div class="container mt-3 mb-5">
   <%= form_with url: bus_bookings_path(@bus), method: :post do |f| %>
        <div class="row justify-content-center mb-3 mt-2">
+     
        <div class="col-md-6">
            <%= f.label:booking_date, class:"form-label"  %>
-           <%= f.date_field :booking_date,min:Date.today, class: "form-control" %>
+           <%= f.date_field :booking_date,required: true, min:Date.today, class: "form-control" %>
            <% if @bus.errors[:booking_date].any? %>
            <div class="field-error text-danger">
            <%= @bus.errors.full_messages_for(:booking_date).to_sentence %>
@@ -31,16 +32,56 @@
         </div>
       <% end %>
     </div>
-
+    
     <div class="text-center mt-4">
-      
-   
-<%= f.submit "Book Selected Seat", class: "btn btn-success px-5" %>
-
-     
+      <%= f.submit "Book Selected Seat", class: "btn btn-success px-5" %>
     </div>
 
   <% end %>
+   <% if flash[:notice] %>
+       <script>
+       alert("<%= flash[:notice] %>")
+       </script>
+       <% end %>
+        <% if flash[:already] %>
+       <script>
+       alert("<%= flash[:already] %>")
+       </script>
+       <% end %>
+
+       <div id="busCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <% if @bus.images.attached? %>
+      <% @bus.images.each_with_index do |image, index| %>
+        <div class="carousel-item <%= 'active' if index.zero? %>">
+          <%= image_tag image,
+                class: "d-block w-100",
+                style: "height:300px; object-fit:cover;" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="carousel-item active">
+        <p class="text-center">No Image</p>
+      </div>
+    <% end %>
+
+  </div>
+
+  <button class="carousel-control-prev"
+          type="button"
+          data-bs-target="#busCarousel"
+          data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  </button>
+
+  <button class="carousel-control-next"
+          type="button"
+          data-bs-target="#busCarousel"
+          data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  </button>
+
 </div>
 
 <script>
@@ -59,4 +100,13 @@ checkboxes.forEach(function(checkbox){
 
 });
 </script>
+
+
+
+
+
+
+
+
+
 

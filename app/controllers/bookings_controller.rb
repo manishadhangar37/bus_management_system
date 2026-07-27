@@ -7,19 +7,34 @@ end
 def show
 end
 def new
-    @bus = Bus.find(params[:bus_id])
    @booking = Booking.new
   end
+
   def create
-    @booking = CreateBookings.new(@bus,@current_user,booking_params).complete_booking
+  seats=params[:seat_number]
+
+    unless seats.present?
+      flash[:notice]="choose any seat"
+      redirect_to new_bus_booking_path(@bus) and return
+    end
+
+    
+     
+     @booking = CreateBookings.new(@bus,@current_user,booking_params).complete_booking
+      message = @booking.check_prior_seat(seats)
+      @booking.seat_number = message
+      flash[:already]=message
+    redirect_to new_bus_booking_path(@bus) and return
+    @booking.total_ticket=seats.count
     if @booking.save
       BookingMailer.confirm_booking_message(@booking,@current_user).deliver_now
-      render plain:"booked"
+     flash[:notice]= "booking confirm you can check mail"
+     redirect_to new_bus_booking_path(@bus)
      end
   end
 
   def edit
-     @booking = @bus.bookings.find(params[:id])
+   @booking = @bus.bookings.find(params[:id])
   end
 
   def update
@@ -31,7 +46,8 @@ def new
    end
 
    def set_bus
-    @bus = Bus.find(params[:bus_id])
+  
+     @bus = Bus.find(params[:bus_id])
   end
 end
 

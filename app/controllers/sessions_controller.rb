@@ -10,8 +10,10 @@ class SessionsController < ApplicationController
            render :new and return
          end
         if user.authenticate(params[:password]) 
+            
             unless user.email_varified
                 flash.now[:alert]="email is not varified"
+                render :new and return
             end
             token = JwtService.new.generate_token(user)
             if token
