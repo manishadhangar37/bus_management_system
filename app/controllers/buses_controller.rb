@@ -41,6 +41,8 @@ class BusesController < ApplicationController
       redirect_to "/"
     end
     def search
+      
+     Bus.where("source LIKE ?", "%#{search_term}%")
       @buses = Bus.where(source: params[:source],destination: params[:destination])
       
     end

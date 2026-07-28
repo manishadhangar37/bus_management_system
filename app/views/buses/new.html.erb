@@ -6,7 +6,7 @@
   <div class="container d-flex align-items-center min-vh-100">
   <div class="row w-100">
   <div class="col-md-6 col-lg-4 mx-auto p-4 bg-light-subtle border rounded shadow-sm">
-  <%= form_with model:[@user,@bus] do |f| %>
+  <%= form_with model:@bus do |f| %>
         <h3 class="mb-4 text-center text-success"> New Bus </h3>
          <div class="mb-3">
            <%= f.label:bus_name, class:"form-label"  %>
@@ -30,7 +30,7 @@
     
     <div class="mb-3">
      <%= f.label :source,class:"form-label" %>
-     <%= f.text_field :source, class:"form-control" %>
+     <%= f.text_field :source, class:"form-control",required: :true  %>
      <% if @bus.errors[:source].any? %>
            <div class="field-error text-danger">
          <%= @bus.errors.full_messages_for(:source).to_sentence %>
@@ -60,7 +60,7 @@
      
      <div class="mb-3">
      <%= f.label :departure_at, class:"form-label" %>
-     <%= f.time_field  :departure_at, class:"form-control"%>
+     <%= f.time_field  :departure_at, class:"form-control", required: :true%>
      <% if @bus.errors[:departure_at].any? %>
            <div class="field-error text-danger">
          <%= @bus.errors.full_messages_for(:departure_at).to_sentence %>
@@ -69,7 +69,7 @@
     </div>
     <div class="mb-3">
      <%= f.label :arrival_at, class:"form-label" %>
-     <%= f.time_field  :arrival_at, class:"form-control"%>
+     <%= f.time_field  :arrival_at, class:"form-control", required: :true %>
      <% if @bus.errors[:arrival_at].any? %>
            <div class="field-error text-danger">
          <%= @bus.errors.full_messages_for(:arrival_at).to_sentence %>
@@ -79,6 +79,11 @@
      <div class="field img-fluid">
        <%= f.label :images %>
          <%= f.file_field :images, multiple: true %>
+          <% if @bus.errors[:images].any? %>
+           <div class="field-error text-danger">
+         <%= @bus.errors.full_messages_for(:images).to_sentence %>
+         </div>
+        <% end %>
        </div>
    
         

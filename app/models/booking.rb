@@ -20,6 +20,12 @@ class Booking < ApplicationRecord
     end
     seat_present
     end
+    def check_booked_seats
+      
+     seats = Booking.where(bus_id: 29, booking_date: Date.today).pluck(:seat_number)
+
+  
+    end
 
   def booking_date_greater_than_today
     if booking_date < Date.today
@@ -27,13 +33,13 @@ class Booking < ApplicationRecord
     end
   end
 
+
   def decrease_total_seat
    bus.total_seat - self.total_ticket
   end
 
   def self.for_admin(user)
-    
-  joins(:bus).where(buses: { user_id: user.id })
+   joins(:bus).where(buses: { user_id: user.id })
   end
   
 end

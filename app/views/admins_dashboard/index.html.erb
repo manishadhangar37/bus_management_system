@@ -1,5 +1,4 @@
-
-<h2> All Bus </h2>
+ <h2> Admins Buses <h2/>
 <table class="table table-primary">
   <thead>
     <tr>
@@ -8,11 +7,12 @@
       <th scope="col">BusNumber</th>
       <th scope="col">Source</th>
       <th scope="col">Destination</th>
-      <th scope="col">Manage Bus </th>
+      <th scope="col"> Manage Bus</th>
+      
     </tr>
   </thead>
   <tbody>
-    <%= render partial: "bus", collection: @buses %>
+    <%= render partial: "buses/bus", collection: @buses %>
   </tbody>
 </table>
 
