@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "home", to: "home#index"
 
-  resources :users, only: [ :new, :create ]
+  resources :users
 
  get "email_verify", to: "email_verifications#email_varify"
 
@@ -23,4 +23,5 @@ get "/search", to:"buses#search"
  end
 resources :bookings, only: [:index]
  get "/admins", to: "admins_dashboard#admin"
+ get "/admins/buses", to: "admins_dashboard#index"
 end

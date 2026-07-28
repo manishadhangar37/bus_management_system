@@ -4,6 +4,7 @@
   <h2 class="text-center mb-4">All Bookings</h2>
      <% if @bookings.any? %>
        <div class="row">
+       
          <% @bookings.each do |booking| %>
 
           <div class="col-md-6 mb-4">
@@ -20,6 +21,18 @@
                 <%= booking.bus.source %>
               </p>
                <p>
+                <strong>Seat booked:</strong>
+                  <%= booking.seat_number %>
+              </p>
+               
+                
+                <strong>Passanger:</strong>
+               <% passanger_id = booking.user_id%>
+               <% @passanger  = User.find(passanger_id) %>
+               <%= @passanger.firstname %>
+              </p>
+                
+               <p>
                 <strong>To:</strong>
                 <%= booking.bus.destination %>
               </p>
@@ -28,7 +41,7 @@
                 <%= booking.booking_date %>
               </p>
               <p>
-                <strong>Total Seats:</strong>
+                <strong>Booked Seats:</strong>
                 <%= booking.total_ticket %>
               </p>
                <p>

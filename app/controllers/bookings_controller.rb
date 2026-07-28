@@ -9,6 +9,8 @@ def show
 end
 def new
    @booking = Booking.new
+   @seat = @booking.check_booked_seats
+   @user = @current_user
   end
 
   def create

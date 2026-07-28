@@ -6,7 +6,10 @@ Passanger: <%= @user.firstname %>
 BusName :<%= @bookings.bus.bus_name %>
 From: <%= @bookings.bus.source %>
 To: <%= @bookings.bus.destination %>
-Arrive_at <%=  @bookings.bus.arrival_at %>
-Departure_at <%=  @bookings.bus.arrival_at %>
+Arrive_at <%=  @bookings.bus.arrival_at.strftime("%H:%M %p") %>
+Departure_at <%=  @bookings.bus.departure_at.strftime("%H:%M %p") %>
+BookingDate <%= @bookings.booking_date %>
+
+
 
 <strong> THANKYOU .. </strong>

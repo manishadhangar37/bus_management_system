@@ -3,6 +3,9 @@
     Select Seat - <%= @bus.bus_name %>
   </h2>
   </div>
+    
+
+    
 <div class="container mt-3 mb-5">
   <%= form_with url: bus_bookings_path(@bus), method: :post do |f| %>
        <div class="row justify-content-center mb-3 mt-2">
@@ -18,17 +21,25 @@
            <% end %>
            </div>
            </div> 
-          
+           
 <div class="row justify-content-center g-2 border rounded-4 shadow-sm p-4 bg-light">
       <% (1..@bus.total_seat).each do |seat_number| %>
-<div class="col-3 col-sm-2 col-md-1 mb-2 text-center" >         
+<div class="col-3 col-sm-2 col-md-1 mb-2 text-center" >  
+       <% if @seat.include?(seat_number) %>
+           <input type="checkbox"class="btn-check seat-checkbox"name="seat_number[]" id="seat_<%= seat_number%>"value="<%= seat_number %>" disabled = true>
+         <label class="btn btn-outline-primary w-40 h-10 py-3"
+                 for="seat_<%= seat_number %>">
+            
+            <h4><%= seat_number %></h4>
+          </label>
+           <%end %>       
           <input type="checkbox"class="btn-check seat-checkbox"name="seat_number[]" id="seat_<%= seat_number%>"value="<%= seat_number %>">
          <label class="btn btn-outline-primary w-40 h-10 py-3"
                  for="seat_<%= seat_number %>">
             
             <h4><%= seat_number %></h4>
           </label>
-
+          
         </div>
       <% end %>
     </div>
@@ -91,9 +102,10 @@ checkboxes.forEach(function(checkbox){
   checkbox.addEventListener("change", function(){
 
     let selectedSeat = document.querySelectorAll(".seat-checkbox:checked");
-
+           this.style="red"
     if (selectedSeat.length > 3) {
       this.checked = false;
+      
       alert("You can select maximum 3 seats at a time");
     }
 
@@ -102,8 +114,9 @@ checkboxes.forEach(function(checkbox){
 });
 </script>
 
+ <%= Booking.where(bus_id: @bus_id, booking_date: @booking.booking_date).pluck %>
 
-
+ 
 
 
 

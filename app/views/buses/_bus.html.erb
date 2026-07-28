@@ -1,0 +1,21 @@
+
+<table class=" table table-primary">
+
+ 
+  <tbody>
+    
+     <tr>
+     <td><%= bus.bus_name %></td>
+      <td><%= bus.bus_number %></td>
+      <td><%= bus.source%></td>
+      <td><%= bus.destination %></td>
+      <td><%= link_to "view_bus", bus_path(bus)%>
+      <% if @current_user.admin? %>
+      <td><%= link_to "edit_bus", edit_bus_path(bus)%>  
+      <td><%= link_to "delete_bus", bus_path(bus)%>
+        <% end %>
+        <td> <%= link_to "Book Bus", new_bus_booking_path(bus) %> </td>
+
+      </tr>
+    
+        </tbody>
