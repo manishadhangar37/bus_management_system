@@ -2,7 +2,9 @@ class Bus < ApplicationRecord
   belongs_to :user
   has_many_attached :images
   has_many :bookings,dependent: :destroy
-
+  scope :bus_for_admin, -> {
+    where(user_id:@current_user.id)
+  }
 
   validates :bus_name, presence: true
   validates :bus_number, presence: true, format: { with:  /\A[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}\z/, message: "bus number must in these format MP-09-FA-1234" }
@@ -27,4 +29,5 @@ class Bus < ApplicationRecord
     self.available_seat = self.total_seat
   end
   
+ 
 end

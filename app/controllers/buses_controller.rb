@@ -16,7 +16,7 @@ class BusesController < ApplicationController
       return unless @current_user.admin?
       @bus = @user.buses.new(bus_params)
       if @bus.save
-            redirect_to edit_user_bus_path(@user, @bus)
+            redirect_to edit_bus_path(@bus)
            else
               render :new, status: :unprocessable_entity
            end
@@ -30,8 +30,9 @@ class BusesController < ApplicationController
        @bus = Bus.find(params[:id])
        @bus.update(bus_params)
        @bus.update(thumbnail_image_id: params[:bus][:thumbnail_image_id])
-
-       redirect_to buses_path
+        
+    
+    redirect_to admins_path
     end
     def destroy
      return unless @user.admin

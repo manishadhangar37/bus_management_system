@@ -59,9 +59,9 @@
     <div class="mb-3">
      <%= f.label :password_confirmation , class:"form-label" %>
      <%= f.password_field :password_confirmation, class:"form-control"%>
-     <% if @user.errors[:password].any? %>
+     <% if @user.errors[:password_confirmation].any? %>
            <div class="field-error text-danger">
-         <%= @user.errors.full_messages_for(:password).to_sentence %>
+         <%= @user.errors.full_messages_for(:password_confirmation).to_sentence %>
          </div>
         <% end %>
     </div>
