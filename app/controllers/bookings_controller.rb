@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
 before_action :set_bus, except: [:index]
 
 def index 
-  @bookings = Booking.all
+  @bookings = Booking.for_admin(@current_user)
+
 end
 def show
 end
@@ -12,25 +13,27 @@ def new
 
   def create
   seats=params[:seat_number]
-
     unless seats.present?
       flash[:notice]="choose any seat"
       redirect_to new_bus_booking_path(@bus) and return
     end
-
-    
-     
-     @booking = CreateBookings.new(@bus,@current_user,booking_params).complete_booking
-      message = @booking.check_prior_seat(seats)
-      @booking.seat_number = message
-      flash[:already]=message
-    redirect_to new_bus_booking_path(@bus) and return
+      @booking = CreateBookings.new(@bus,@current_user,booking_params).complete_booking
+      seat_present = @booking.check_prior_seat(seats)
+      
+      if seat_present.any?  
+       flash[:already]="#{seat_present.join(',')} already booked"
+       redirect_to new_bus_booking_path(@bus) and return
+      end
     @booking.total_ticket=seats.count
     if @booking.save
       BookingMailer.confirm_booking_message(@booking,@current_user).deliver_now
      flash[:notice]= "booking confirm you can check mail"
      redirect_to new_bus_booking_path(@bus)
-     end
+    
+    else
+       redirect_to new_bus_booking_path(@bus)
+    end
+
   end
 
   def edit
@@ -46,8 +49,7 @@ def new
    end
 
    def set_bus
-  
-     @bus = Bus.find(params[:bus_id])
+  @bus = Bus.find(params[:bus_id])
   end
 end
 

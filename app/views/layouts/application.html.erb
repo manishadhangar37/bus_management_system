@@ -9,7 +9,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <% if @current_user %>
     <%= button_to "logout",logout_path, method: :delete, class: "btn btn-danger"%>
+     <% end %>
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
@@ -25,7 +27,7 @@
 
     <%= javascript_importmap_tags %>
   </head>
- 
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <body>
     <%= yield %>
     

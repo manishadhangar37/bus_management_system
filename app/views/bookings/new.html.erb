@@ -49,37 +49,38 @@
        </script>
        <% end %>
 
-       <div id="busCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
+      <div id="busCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
 
-    <% if @bus.images.attached? %>
-      <% @bus.images.each_with_index do |image, index| %>
-        <div class="carousel-item <%= 'active' if index.zero? %>">
-          <%= image_tag image,
-                class: "d-block w-100",
-                style: "height:300px; object-fit:cover;" %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="carousel-item active">
-        <p class="text-center">No Image</p>
-      </div>
+  <div class="carousel-indicators">
+    <% @bus.images.each_with_index do |image, index| %>
+      <button type="button"
+              data-bs-target="#busCarousel"
+              data-bs-slide-to="<%= index %>"
+              class="<%= 'active' if index.zero? %>">
+      </button>
     <% end %>
-
   </div>
 
-  <button class="carousel-control-prev"
-          type="button"
+  <div class="carousel-inner">
+    <% @bus.images.each_with_index do |image, index| %>
+      <div class="carousel-item <%= 'active' if index.zero? %>">
+        <%= image_tag image,
+          class: "d-block w-100 rounded",
+          style: "height:350px; object-fit:cover;" %>
+      </div>
+    <% end %>
+  </div>
+
+  <button class="carousel-control-prev" type="button"
           data-bs-target="#busCarousel"
           data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="carousel-control-prev-icon"></span>
   </button>
 
-  <button class="carousel-control-next"
-          type="button"
+  <button class="carousel-control-next" type="button"
           data-bs-target="#busCarousel"
           data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon"></span>
   </button>
 
 </div>

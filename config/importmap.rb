@@ -8,5 +8,5 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 # Bootstrap
-pin "@popperjs/core", to: "popper.js", preload: true
-pin "bootstrap", to: "bootstrap.bundle.min.js", preload: true
+pin "@popperjs/core", to: "@popperjs--core.js" # @2.11.8
+pin "bootstrap" # @5.3.8

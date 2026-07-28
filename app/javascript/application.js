@@ -2,17 +2,18 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+import "bootstrap"
 
 import * as bootstrap from "bootstrap"
 
-window.bootstrap = bootstrap
-document.addEventListener("turbo:load", () => {
-  const carousel = document.querySelector("#busCarousel");
+// window.bootstrap = bootstrap
+// document.addEventListener("turbo:load", () => {
+//   const carousel = document.querySelector("#busCarousel");
 
-  if (carousel) {
-    new bootstrap.Carousel(carousel, {
-      interval: 2000,
-      ride: "carousel"
-    });
-  }
-});
+//   if (carousel) {
+//     new bootstrap.Carousel(carousel, {
+//       interval: 2000,
+//       ride: "carousel"
+//     });
+//   }
+// });

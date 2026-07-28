@@ -2,11 +2,12 @@
 
   <div class="row">
 
-    <!-- Sidebar -->
 
-    <div class="col-md-2 bg-dark text-white min-vh-100">
+    
 
-      <h3 class="text-center py-4">
+    <div class="col-md-3 col-lg-2 bg-dark text-white min-vh-100 p-3">
+
+      <h3 class="text-center py-3">
         🚌 Bus Admin
       </h3>
 
@@ -14,32 +15,35 @@
 
       <ul class="nav flex-column">
 
-        <li class="nav-item mb-2">
-          <%= link_to "🏠 Dashboard", root_path,
+        <li class="nav-item mb-3">
+          <%= link_to "🏠 Dashboard",
+              root_path,
               class: "nav-link text-white" %>
         </li>
+
+
+        <li class="nav-item mb-3">
+          <%= link_to "🚌 All Buses",
+              buses_path,
+              class: "nav-link text-white" %>
+        </li>
+
+
         
 
-        <li class="nav-item mb-2">
-          <%= link_to "🚌 All Buses",buses_path,
+
+        <li class="nav-item mb-3">
+          <%= link_to "🎫 All Bookings",
+              bookings_path,
               class: "nav-link text-white" %>
         </li>
 
-        <li class="nav-item mb-2">
-          <%= link_to "👤 All Users",users_path,
-              class: "nav-link text-white" %>
-        </li>
-
-        <li class="nav-item mb-2">
-          <%= link_to "🎫 All Bookings",bookings_path,
-              class: "nav-link text-white" %>
-        </li>
 
         <li class="nav-item mt-5">
-          <%= link_to "🚪 Logout", logout_path,
-              data: { turbo_method: :delete },
-              class: "btn btn-danger w-100" %>
+              <%= button_to "logout",logout_path, method: :delete, class: "btn btn-danger"%>
+
         </li>
+
 
       </ul>
 
@@ -47,179 +51,283 @@
 
 
 
+
     <!-- Main Content -->
 
-    <div class="col-md-10 bg-light">
 
-      <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <div class="col-md-9 col-lg-10 bg-light p-4">
 
-        <h2>
-          Admin Dashboard
-        </h2>
 
-        <h5>
-          Welcome Admin
-        </h5>
+      <!-- Header -->
+
+
+      <div class="bg-white shadow-sm rounded p-4 mb-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+          <div>
+
+            <h2 class="fw-bold mb-1">
+              Admin Dashboard
+            </h2>
+
+            <p class="text-muted mb-0">
+              Manage buses, users and bookings easily
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <h5 class="mb-0">
+              Welcome Admin 👋
+            </h5>
+
+          </div>
+
+
+        </div>
 
       </div>
 
 
-      <!-- Cards -->
 
-      <div class="row">
 
-        <div class="col-md-4">
 
-          <div class="card shadow border-0">
+      <!-- Statistics Cards -->
 
-            <div class="card-body text-center">
 
-              <h5>Total Buses</h5>
+      <div class="row g-4 mb-5">
 
-              <h1 class="text-primary">
-                <%= @total_buses%>
+
+        <div class="col-md-6">
+
+
+          <div class="card shadow border-0 rounded-4">
+
+            <div class="card-body text-center p-4">
+
+
+              <h5 class="text-muted">
+                Total Buses 🚌
+              </h5>
+
+
+              <h1 class="text-primary fw-bold">
+                <%= @total_buses %>
               </h1>
+
+
+              <p class="text-muted">
+                Available buses in system
+              </p>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
-        <div class="col-md-4">
-
-          <div class="card shadow border-0">
-
-            <div class="card-body text-center">
-
-              <h5>Total Users</h5>
-
-              <h1 class="text-success">
-                <%= @total_users %>
-              </h1>
-
-            </div>
-
-          </div>
-
-        </div>
 
 
-        <div class="col-md-4">
 
-          <div class="card shadow border-0">
+        <div class="col-md-6">
 
-            <div class="card-body text-center">
 
-              <h5>Total Bookings</h5>
-                  <h1 class="text-success">
+          <div class="card shadow border-0 rounded-4">
+
+
+            <div class="card-body text-center p-4">
+
+
+              <h5 class="text-muted">
+                Total Bookings 🎫
+              </h5>
+
+
+              <h1 class="text-success fw-bold">
                 <%= @total_bookings %>
               </h1>
-              
+
+
+              <p class="text-muted">
+                Total customer bookings
+              </p>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
+
       </div>
+
+
+
 
 
 
       <!-- Quick Actions -->
 
-      <div class="row mt-5">
 
-        <div class="col-md-4">
+      <h4 class="fw-bold mb-4">
+        Quick Actions
+      </h4>
 
-          <div class="card shadow">
 
-            <div class="card-body text-center">
 
-              <h4>🚌</h4>
+      <div class="row g-4 mb-5">
 
-              <h5>Manage Buses</h5>
+
+
+        <!-- All Buses -->
+
+
+        <div class="col-md-4 mb-4">
+
+
+          <div class="card shadow border-0 rounded-4 h-100">
+
+
+            <div class="card-body text-center p-5">
+
+
+              <h1>
+                🚌
+              </h1>
+
+
+              <h5 class="fw-bold">
+                All Buses
+              </h5>
+
+
+              <p class="text-muted">
+                View and manage buses
+              </p>
+
+
 
               <%= link_to "View Buses",
                   buses_path,
-                  class: "btn btn-primary mt-2" %>
+                  class: "btn btn-primary mt-2 px-4" %>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
 
-        <div class="col-md-4">
-
-          <div class="card shadow">
-
-            <div class="card-body text-center">
-
-              <h4>👤</h4>
-
-              <h5>Manage Users</h5>
-
-              <%= link_to "View Users",
-                  users_path,
-                  class: "btn btn-success mt-2" %>
-
-            </div>
-
-          </div>
-
-        </div>
 
 
+        <!-- Bookings -->
 
-        <div class="col-md-4">
 
-          <div class="card shadow">
+        <div class="col-md-4 mb-4">
 
-            <div class="card-body text-center">
 
-              <h4>🎫</h4>
+          <div class="card shadow border-0 rounded-4 h-100">
 
-              <h5>Manage Bookings</h5>
-               <%= link_to "View bookings",
+
+            <div class="card-body text-center p-5">
+
+
+              <h1>
+                🎫
+              </h1>
+
+
+              <h5 class="fw-bold">
+                Manage Bookings
+              </h5>
+
+
+              <p class="text-muted">
+                Check all bookings
+              </p>
+
+
+
+              <%= link_to "View Bookings",
                   bookings_path,
-                  class: "btn btn-success mt-2" %>
+                  class: "btn btn-success mt-2 px-4" %>
 
-              
+
             </div>
+
 
           </div>
 
+
         </div>
 
-        <div class="col-md-4 mt-5">
 
-          <div class="card shadow">
 
-            <div class="card-body text-center">
 
-              <h4>👤</h4>
 
-              <h5>Manage Users</h5>
+        <!-- Add Bus -->
 
-              <%= link_to "add Bus",
+
+        <div class="col-md-4 mb-4">
+
+
+          <div class="card shadow border-0 rounded-4 h-100">
+
+
+            <div class="card-body text-center p-5">
+
+
+              <h1>
+                ➕
+              </h1>
+
+
+              <h5 class="fw-bold">
+                Add New Bus
+              </h5>
+
+
+              <p class="text-muted">
+                Register new bus
+              </p>
+
+
+
+              <%= link_to "Add Bus",
                   new_bus_path,
-                  class: "btn btn-success mt-2" %>
+                  class: "btn btn-warning mt-2 px-4" %>
+
 
             </div>
 
+
           </div>
 
+
         </div>
+
 
       </div>
 
+
     </div>
 
+
   </div>
+
 
 </div>

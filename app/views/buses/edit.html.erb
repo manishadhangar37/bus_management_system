@@ -6,7 +6,7 @@
   <div class="container d-flex align-items-center min-vh-100">
   <div class="row w-100">
   <div class="col-md-6 col-lg-4 mx-auto p-4 bg-light-subtle border rounded shadow-sm">
-  <%= form_with model:[@user,@bus] do |f| %>
+  <%= form_with model:@bus do |f| %>
         <h3 class="mb-4 text-center text-success"> New Bus </h3>
          <div class="mb-3">
            <%= f.label:bus_name, class:"form-label"  %>
@@ -88,6 +88,11 @@
 
    <% end %>               
    </div>
+   <% if flash[:added] %>
+       <script>
+       alert("<%= flash[:notice] %>")
+       </script>
+       <% end %>
         
     <%= f.submit "Add Bus", class: "btn btn-success w-100 mt-2" %> 
    
