@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   validates :booking_date,presence: true
   validates :seat_number,presence: true
   validates :total_ticket,  numericality: { less_than_or_equal_to: 3,message: "can book less then one 3 seat " }
-  validate :booking_date_greater_than_today
+  
   after_create :decrease_total_seat
   
   def check_prior_seat(seats)
@@ -20,18 +20,14 @@ class Booking < ApplicationRecord
     end
     seat_present
     end
-    def check_booked_seats
+    def check_booked_seats(booked_date,bus)
       
-     seats = Booking.where(bus_id: 29, booking_date: Date.today).pluck(:seat_number)
-
+     seats = Booking.where(bus_id: bus.id, booking_date: booked_date).pluck(:seat_number).flatten
+   
   
     end
 
-  def booking_date_greater_than_today
-    if booking_date < Date.today
-         errors.add(:booking_date, "booking date must be greater then today")
-    end
-  end
+  
 
 
   def decrease_total_seat

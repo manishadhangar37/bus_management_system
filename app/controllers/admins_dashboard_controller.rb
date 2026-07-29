@@ -15,7 +15,7 @@ before_action :check_admin
     end
 
     def index
-        @buses = @current_user.buses
+        @buses = @current_user.buses.page(params[:page]).per(10)
     end
     def check_admin
         

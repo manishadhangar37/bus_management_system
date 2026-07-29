@@ -2,15 +2,20 @@ class BookingsController < ApplicationController
 before_action :set_bus, except: [:index]
 
 def index 
-  @bookings = Booking.for_admin(@current_user)
+  @bookings = Booking.for_admin(@current_user).page(params[:page]).per(10)
 
 end
 def show
 end
 def new
    @booking = Booking.new
-   @seat = @booking.check_booked_seats
-   @user = @current_user
+   if params[:booking_date].present?
+   booking_date = params[:booking_date]
+  else
+    booking_date = Date.today
+   end 
+   @booking_date = booking_date
+   @seat = @booking.check_booked_seats(@booking_date,@bus)
   end
 
   def create

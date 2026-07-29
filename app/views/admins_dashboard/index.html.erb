@@ -1,18 +1,36 @@
- <h2> Admins Buses <h2/>
-<table class="table table-primary">
-  <thead>
-    <tr>
-      
-      <th scope="col">BusName</th>
-      <th scope="col">BusNumber</th>
-      <th scope="col">Source</th>
-      <th scope="col">Destination</th>
-      <th scope="col"> Manage Bus</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: "buses/bus", collection: @buses %>
-  </tbody>
-</table>
+<div class="container ">
 
+  <h2 class="text-center fw-bold ">All Bus</h2>
+
+
+  <div class="table-responsive">
+
+    <table class="table table-primary table-hover align-middle text-center">
+
+      <thead>
+        <tr>
+          <th>Bus Name</th>
+          <th>Bus Number</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>View</th>
+          <th>Book</th>
+        </tr>
+      </thead>
+
+
+      <tbody>
+
+        <%= render partial: "buses/bus",collection: @buses %>
+
+      </tbody>
+
+
+    </table>
+
+  </div>
+
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @buses %>
+</div>
