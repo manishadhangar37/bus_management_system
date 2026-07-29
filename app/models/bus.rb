@@ -34,7 +34,10 @@ class Bus < ApplicationRecord
   def set_availabel_seat
     self.available_seat = self.total_seat
   end
-  
+
+  def self.search(source,destination)
+    @buses = Bus.where("source LIKE :src OR destination LIKE :dest",src:"%#{source}%",dest: "%#{destination}%")
+  end
   
    def correct_image_type
     

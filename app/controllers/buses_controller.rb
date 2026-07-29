@@ -5,7 +5,7 @@ class BusesController < ApplicationController
     end
 
     def index
-      @buses = Bus.all
+      @buses = Bus.all.page(params[:page]).per(10)
     end
     def show
     
@@ -41,9 +41,9 @@ class BusesController < ApplicationController
       redirect_to "/"
     end
     def search
-      
-     Bus.where("source LIKE ?", "%#{search_term}%")
-      @buses = Bus.where(source: params[:source],destination: params[:destination])
+      source = params[:source]
+      destination = params[:destination]
+      @buses = Bus.search(source,destination)
       
     end
 
