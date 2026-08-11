@@ -1,14 +1,20 @@
 class BusesController < ApplicationController
-    before_action :set_user, only: [:create, :update, :edit,:destroy]
+    before_action :set_user, only: [ :create, :update, :edit, :destroy ]
     def new
       @bus = Bus.new
     end
 
     def index
-      @buses = Bus.all.page(params[:page]).per(10)
+      buses = Bus.all.page(params[:page]).per(10)
+
+      if params[:search].present?
+
+        buses = Bus.where("bus_name ILIKE ?", "%#{params[:search]}%").page(params[:page]).per(10)
+      end
+
+      @buses = buses
     end
     def show
-    
       @bus = Bus.find(params[:id])
     end
 
@@ -16,10 +22,11 @@ class BusesController < ApplicationController
       return unless @current_user.admin?
       @bus = @user.buses.new(bus_params)
       if @bus.save
+            flash[:notice]="bus created successfully"
             redirect_to edit_bus_path(@bus)
-           else
+      else
               render :new, status: :unprocessable_entity
-           end
+      end
           end
 
     def edit
@@ -30,21 +37,33 @@ class BusesController < ApplicationController
        @bus = Bus.find(params[:id])
        @bus.update(bus_params)
        @bus.update(thumbnail_image_id: params[:bus][:thumbnail_image_id])
-        
-    
+
+
+
     redirect_to admins_path
     end
     def destroy
-     return unless @user.admin
-      @bus = Bus.find(params[:id])
+     return unless @user.admin?
+
+
+       bus = Bus.find(params[:id])
+
+
+     if bus.bookings.exists?
+      flash[:alert] = "Cannot delete this bus because it has active bookings."
+     else
       @bus.destroy
-      redirect_to "/"
-    end
+      flash[:notice] = "Bus successfully deleted."
+     end
+
+    redirect_to admins_path
+  end
+
+
     def search
       source = params[:source]
       destination = params[:destination]
-      @buses = Bus.search(source,destination)
-      
+      @buses = Bus.search(source, destination)
     end
 
     private

@@ -56,12 +56,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_23_113005) do
   end
 
   create_table "buses", force: :cascade do |t|
-    t.time "arrival_at"
+    t.datetime "arrival_at"
     t.integer "available_seat"
     t.string "bus_name"
     t.string "bus_number"
     t.datetime "created_at", null: false
-    t.time "departure_at"
+    t.datetime "departure_at"
     t.date "departure_date"
     t.string "destination"
     t.string "source"
