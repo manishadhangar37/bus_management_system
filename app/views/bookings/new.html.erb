@@ -11,9 +11,7 @@
 
       <div class="mb-4 text-center">
 
-        <%= f.label :booking_date, 
-              "Select Booking Date",
-              class: "form-label fw-bold fs-5" %>
+        <%= f.label :booking_date, "Select Booking Date",class: "form-label fw-bold fs-5" %>
 
         <%= f.date_field :booking_date,required: true, min: Date.today,value: @booking_date,class: "form-control text-center",onchange: "this.form.submit();" %>
 
@@ -50,10 +48,7 @@
         <div class="col-3 col-sm-2 col-md-1 mb-2 text-center">
 
           <input
-            type="checkbox"
-            class="btn-check seat-checkbox"
-            name="seat_number[]"
-            id="seat_<%= seat_number %>"
+            type="checkbox"class="btn-check seat-checkbox"name="seat_number[]"id="seat_<%= seat_number %>"
             value="<%= seat_number %>"
             <%= "disabled" if booked %>>
 

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :buses
-    has_many :bookings
+    has_many :buses, dependent: :destroy
+    has_many :bookings, dependent: :destroy
 
     validates :firstname, presence: true
     validates :lastname, presence: true
@@ -16,9 +16,9 @@ class User < ApplicationRecord
     message:  "must be at least 8 characters long ,one lowercase letter, one uppercase letter, one number, and one special character."
     }
     validates :password_confirmation, presence: true
-    validates :role,presence: true
+    validates :role, presence: true
     before_create :generate_email_valid_token
-   
+
   enum :role, {
         user: 0,
         admin: 1
@@ -29,5 +29,4 @@ class User < ApplicationRecord
     self.generate_token = SecureRandom.base64
     self.email_varified = false
    end
-
 end

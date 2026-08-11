@@ -1,3 +1,9 @@
+<%= form_with url: buses_path, method: :get do |f| %>
+  <label for="search">Search for:</label>
+  <input type="search" name="search" id="search" onchange:"this.form.submit();">
+  <%= f.submit "search" %>
+ <% end %>
+
 <div class="container mt-4">
 
   <h2 class="text-center fw-bold mb-4">
@@ -33,6 +39,10 @@
   </div>
 
 </div>
-<div class="d-flex justify-content-center mt-4">
-  <%= paginate @buses %>
-</div>
+
+
+<% if @buses.present? && @buses.total_pages > 1 %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @buses %>
+  </div>
+<% end %>

@@ -29,6 +29,11 @@
     </table>
 
   </div>
+  <% if flash[:deltemessage] %>
+  <script>
+    alert("<%= flash[:deltemessage] %>")
+  </script>
+<% end %>
 
 </div>
 <div class="d-flex justify-content-center mt-4">

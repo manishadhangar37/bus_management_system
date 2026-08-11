@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[8.1]
       t.string :gender
       t.string :email
       t.string :password_digest
-      t.integer :role, default:0
+      t.integer :role, default: 0
       t.integer :contact
       t.string :generate_token
       t.boolean :email_varified

@@ -9,10 +9,31 @@
                     <p><strong>Contact:</strong> <%= @user.contact %></p> 
                     <p><strong>Gender:</strong> <%= @user.gender %></p> 
                     <p><strong>Role:</strong> <%= @user.role %></p> 
+                    <button onclick="changepassword()"> change password </button>
+                    <div id= reset_form style= "display:none">
+                   <%= form_with url: reset_path, method: :patch do |f| %>
+                       <%= f.label:old_password %>
+                       <%= f.password_field :old_password %> <br/> <br/>
+                       <%= f.label:new_password %>
+                       <%= f.password_field :new_password %>  <br/> <br/>
+                       <%= f.label:confirm_password %>
+                       <%= f.password_field :confirm_password %>  <br/> <br/>
+                       <%= f.submit "Reset Password" %>
+                       
+                    <% end %>
+    
                 </div> 
             </div> 
         </div> 
     </div> 
 </div>
 
+<script> 
+function changepassword(){
+  let form = document.getElementById("reset_form"); 
+  if (form.style.display === "none") {
+    form.style.display = "block"; 
+  }
+}
+</script>
 

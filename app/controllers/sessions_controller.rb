@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
            flash.now[:alert]="enter valid email"
            render :new and return
          end
-        if user.authenticate(params[:password]) 
-            
+        if user.authenticate(params[:password])
+
             unless user.email_varified
                 flash.now[:alert]="email is not varified"
                 render :new and return
@@ -23,16 +23,15 @@ class SessionsController < ApplicationController
                 }
                if user.admin?
                 redirect_to admins_path
-                else
+               else
                     redirect_to root_path
-                end
+               end
 
             end
         else
            flash.now[:alert] = "invalid email/password"
             render :new, status: :unprocessable_entity
         end
-       
     end
 
     def destroy

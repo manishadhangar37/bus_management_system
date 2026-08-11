@@ -12,10 +12,13 @@
       <td><%= link_to "view_bus", bus_path(bus)%>
       <% if @current_user.admin? %>
       <td><%= link_to "edit_bus", edit_bus_path(bus)%>  
-      <td><%= link_to "delete_bus", bus_path(bus)%>
+        <td><%= button_to "Delete Bus", bus_path(bus), method: :delete %> </td>
         <% end %>
         <td> <%= link_to "Book Bus", new_bus_booking_path(bus) %> </td>
+       
 
-      </tr>
+      
     
         </tbody>
+
+

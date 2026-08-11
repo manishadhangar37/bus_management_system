@@ -77,8 +77,9 @@
         <% end %>
     </div>
     
-     
+   <p> select one image as thumbnail </p>  
    <div class="container p-3 mr-4">
+
    <% @bus.images.each do |image| %>
    
    <%= image_tag image, height:100, width:100 %>
@@ -88,7 +89,7 @@
 
    <% end %>               
    </div>
-   <% if flash[:added] %>
+   <% if flash[:notice] %>
        <script>
        alert("<%= flash[:notice] %>")
        </script>
